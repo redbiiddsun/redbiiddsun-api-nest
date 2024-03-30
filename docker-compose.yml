@@ -1,0 +1,11 @@
+version: '1.0'
+
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: redbiiddsun
+    ports:
+      - "3306:3306"
