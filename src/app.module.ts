@@ -2,16 +2,17 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
+import configuration from './config/configuration';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { PrismaModule } from 'nestjs-prisma';
 
 @Module({
   imports: [
-    // ConfigModule.forRoot() is a global module that loads environment variables from a .env file
+    // ConfigModule.forRoot() is a global module that loads environment variables from a configuration file
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '.env',
+      load: [configuration]
     }),
 
     // PrismaModule.forRoot() is a global module that connects to the Prisma client
