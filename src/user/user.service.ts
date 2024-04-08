@@ -32,7 +32,7 @@ export class UserService {
   }
 
   async findAll(): Promise<Omit<User, 'password'>[]> {
-    return this.prisma.user.findMany({});
+    return this.prisma.user.findMany({select: prismaExclude('User', ['password'])});
   }
 
   async findOne(user_id: string): Promise<Omit<User, 'password'> | null> {
