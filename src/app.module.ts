@@ -6,6 +6,7 @@ import configuration from './config/configuration';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { PrismaModule } from 'nestjs-prisma';
+import { ThaiIdModule } from './thai-id/thai-id.module';
 
 @Module({
   imports: [
@@ -32,6 +33,8 @@ import { PrismaModule } from 'nestjs-prisma';
     }),
 
     UserModule,
+
+    ThaiIdModule,
   ],
   controllers: [AppController],
   providers: [AppService],
