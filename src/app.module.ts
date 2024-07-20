@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 
 import configuration from './config/configuration';
 import { ConfigModule } from '@nestjs/config';
@@ -13,7 +11,7 @@ import { ThaiIdModule } from './thai-id/thai-id.module';
     // ConfigModule.forRoot() is a global module that loads environment variables from a configuration file
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [configuration]
+      load: [configuration],
     }),
 
     // PrismaModule.forRoot() is a global module that connects to the Prisma client
@@ -36,7 +34,5 @@ import { ThaiIdModule } from './thai-id/thai-id.module';
 
     ThaiIdModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
