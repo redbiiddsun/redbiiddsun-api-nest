@@ -14,7 +14,6 @@ export class UserService {
     private configService: ConfigService,
   ) {}
 
-
   // Create a new user
   async create(createUserDto: CreateUserDto): Promise<Omit<User, 'password'>> {
     const SALT_ROUNDS = this.configService.get('salt_rounds');
@@ -27,28 +26,33 @@ export class UserService {
 
     return this.prisma.user.create({
       data: createUserDto,
-      select: prismaExclude('User', ['password'])
+      select: prismaExclude('User', ['password']),
     });
   }
 
   async findAll(): Promise<Omit<User, 'password'>[]> {
-    return this.prisma.user.findMany({select: prismaExclude('User', ['password'])});
+    return this.prisma.user.findMany({
+      select: prismaExclude('User', ['password']),
+    });
   }
 
   async findOne(user_id: string): Promise<Omit<User, 'password'> | null> {
     return this.prisma.user.findUnique({
       where: {
-        user_id
+        user_id,
       },
-      select: prismaExclude('User', ['password'])
+      select: prismaExclude('User', ['password']),
     });
   }
 
-  async update(id: string, updateUserDto: UpdateUserDto): Promise<Omit<User, 'password'>> {
+  async update(
+    id: string,
+    updateUserDto: UpdateUserDto,
+  ): Promise<Omit<User, 'password'>> {
     return this.prisma.user.update({
       data: updateUserDto,
       where: { user_id: id },
-      select: prismaExclude('User', ['password'])
+      select: prismaExclude('User', ['password']),
     });
   }
 
