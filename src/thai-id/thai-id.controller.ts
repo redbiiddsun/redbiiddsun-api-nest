@@ -1,20 +1,19 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { CheckThaiCitizenDto } from './dto/thaiID.dto';
 import { ThaiIdService } from './thai-id.service';
-import { ApiResponse } from '@nestjs/swagger';
 
-@Controller('/api/thai-id')
+@Controller('/thai-id')
 export class ThaiIdController {
   constructor(private readonly thaiIdService: ThaiIdService) {}
 
   @Post()
-  ValidateThaiIDPOST(@Body() CheckThaiCitizenDto: CheckThaiCitizenDto) {
-    return this.thaiIdService.ValidateThaiID(CheckThaiCitizenDto.id);
+  ValidateThaiIDWithBody(@Body() CheckThaiCitizenDto: CheckThaiCitizenDto) {
+    return this.thaiIdService.validateThaiID(CheckThaiCitizenDto.id);
   }
 
   @Get(':id')
-  ValidateThaiIDGET(@Param('id') id: string) {
-    return this.thaiIdService.ValidateThaiID(id);
+  ValidateThaiIDWithParam(@Param('id') id: string) {
+    return this.thaiIdService.validateThaiID(id);
   }
-
 }
