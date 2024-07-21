@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 
 import configuration from './config/configuration';
 import { ConfigModule } from '@nestjs/config';
-import { UserModule } from './user/user.module';
 import { ThaiIdModule } from './thai-id/thai-id.module';
 
 @Module({
@@ -12,9 +11,6 @@ import { ThaiIdModule } from './thai-id/thai-id.module';
       isGlobal: true,
       load: [configuration],
     }),
-
-    UserModule,
-
     ThaiIdModule,
   ],
 })
