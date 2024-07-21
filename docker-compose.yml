@@ -7,3 +7,19 @@ services:
       MYSQL_DATABASE: redbiiddsun
     ports:
       - "3306:3306"
+
+  minio:
+    container_name: minio
+    image: minio/minio
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    volumes:
+      - minio_data:/data
+    environment:
+      MINIO_ROOT_USER: NvyrAOeXthfbguezGizGxIqLrQbv6ROC
+      MINIO_ROOT_PASSWORD: LEXNjqN0OlW53cHFTsBZfc7q2NGjZiIs
+    command: server --console-address ":9001" /data
+
+volumes:
+  minio_data: {}
